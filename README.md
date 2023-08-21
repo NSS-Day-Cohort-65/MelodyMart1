@@ -7,5 +7,5 @@
     - update (purchase an instrument),
     - update the instrument price 
     - and delete instruments
-1. Random instrument of the day
+1.ad Random instrument of the day
 1. Instruments added in the last month (latest)
