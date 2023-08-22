@@ -36,8 +36,74 @@ new Instrument()
 }
 };
 
-Console.WriteLine(@"\  |      |           |         \  |            |   
- |\/ |  _ \ |  _ \   _` | |   |  |\/ |  _` |  __| __| 
- |   |  __/ | (   | (   | |   |  |   | (   | |    |   
-_|  _|\___|_|\___/ \__,_|\__, | _|  _|\__,_|_|   \__| 
+Console.WriteLine(
+@"\  |      |           |         \  |            |
+ |\/ |  _ \ |  _ \   _` | |   |  |\/ |  _` |  __| __|
+ |   |  __/ | (   | (   | |   |  |   | (   | |    |
+_|  _|\___|_|\___/ \__,_|\__, | _|  _|\__,_|_|   \__|
                          ____/                        ");
+
+
+string choice = null;
+while (choice != "0")
+{
+    Console.WriteLine(@"Please choose an option:
+        0. Exit
+        1. Display Instruments
+        2. Post an Instrument
+        3. Purchase an Instrument
+        4. Update an Instrument
+        5. Delist an Instrument");
+
+    choice = Console.ReadLine().Trim();
+
+    switch (choice)
+    {
+        case "0":
+            Console.WriteLine("Exiting the system. Goodbye!");
+            break;
+
+        case "1":
+            //Display Instruments
+            DisplayInstruments(instruments);
+            break;
+
+        case "2":
+            //Post an Instrument
+            throw new NotImplementedException();
+        // break;
+        case "3":
+            //Purchase an Instrument
+            throw new NotImplementedException();
+        // break;
+        case "4":
+            //Update an Instrument
+            throw new NotImplementedException();
+        // break;
+        case "5":
+            //Delist an Instrument
+            throw new NotImplementedException();
+        // break;
+        default:
+            Console.WriteLine("Please choose one of the options above.");
+            break;
+    }
+}
+
+void DisplayInstruments(List<Instrument> instruments)
+{
+    for (int i = 0; i < instruments.Count; i++)
+    {
+        Console.WriteLine($"{i + 1} . {instruments[i].Name} the costs {instruments[i].Price}");
+    };
+    returnToMainMenu();
+};
+
+
+
+void returnToMainMenu()
+{
+    Console.WriteLine("Press Any Key to return to main menu: ");
+    Console.ReadKey();
+    Console.Clear();
+}
