@@ -70,7 +70,8 @@ while (choice != "0")
 
         case "2":
             //Post an Instrument
-            throw new NotImplementedException();
+            AddAInstrument();
+            break;
         // break;
         case "3":
             //Purchase an Instrument
@@ -94,7 +95,7 @@ void DisplayInstruments(List<Instrument> instruments)
 {
     for (int i = 0; i < instruments.Count; i++)
     {
-        Console.WriteLine($"{i + 1} . {instruments[i].Name} the costs {instruments[i].Price}");
+        Console.WriteLine($"{i + 1} . {InstrumentDetails(instruments[i])}");
     };
     returnToMainMenu();
 };
@@ -106,4 +107,38 @@ void returnToMainMenu()
     Console.WriteLine("Press Any Key to return to main menu: ");
     Console.ReadKey();
     Console.Clear();
+}
+
+string InstrumentDetails(Instrument instrument)
+{
+    string instrumentString = $"Name: {instrument.Name}, " +
+    $"Price: ${instrument.Price}, " +
+    $"Sold on Date: {(instrument.SoldOnDate == null ? "N/A" : instrument.SoldOnDate.Value.ToShortDateString())} " +
+    $"Date Added: {instrument.DateAdded.ToShortDateString()}";
+    return instrumentString;
+}
+
+void AddAInstrument()
+{
+
+
+    Console.WriteLine("Enter the name:");
+    string name = Console.ReadLine().Trim();
+
+    Console.WriteLine("Enter the Price: ");
+    decimal price = decimal.Parse(Console.ReadLine().Trim());
+
+    DateTime dateAdded = DateTime.Now;
+
+    Instrument newInstrument = new Instrument
+    {
+        Name = name,
+        Price = price,
+        DateAdded = dateAdded
+
+    };
+
+    instruments.Add(newInstrument);
+    // add error checkings
+    returnToMainMenu();
 }
