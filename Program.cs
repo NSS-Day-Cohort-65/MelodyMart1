@@ -120,25 +120,54 @@ string InstrumentDetails(Instrument instrument)
 
 void AddAInstrument()
 {
-
-
-    Console.WriteLine("Enter the name:");
-    string name = Console.ReadLine().Trim();
-
-    Console.WriteLine("Enter the Price: ");
-    decimal price = decimal.Parse(Console.ReadLine().Trim());
-
+    string response = null;
+    while (string.IsNullOrWhiteSpace(response))
+    {
+        Console.WriteLine("Enter the name:");
+        response = Console.ReadLine().Trim();
+        if (string.IsNullOrWhiteSpace(response))
+        {
+            Console.WriteLine("Try again!");
+        }
+    }
+    // if(!string.IsNullOrWhiteSpace(response))
+    // {
+    //     response = Console.ReadLine().Trim();
+    // }
+    // else
+    // {
+    //     Console.WriteLine("Enter the name:");
+    //     response = Console.ReadLine().Trim();
+    // }
+    decimal price = 0;
+    while (price <= 0)
+    {
+        Console.WriteLine("Enter the Price: ");
+        try
+        {
+            price = decimal.Parse(Console.ReadLine().Trim());
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("please enter numbers only");
+        }
+    }
     DateTime dateAdded = DateTime.Now;
 
     Instrument newInstrument = new Instrument
     {
-        Name = name,
+        Name = response,
         Price = price,
         DateAdded = dateAdded
 
     };
 
     instruments.Add(newInstrument);
+
     // add error checkings
+
+    // instrument should be string
+    // price should be decimal
+
     returnToMainMenu();
 }
